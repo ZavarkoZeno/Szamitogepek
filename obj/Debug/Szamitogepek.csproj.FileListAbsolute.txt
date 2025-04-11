@@ -1,0 +1,6 @@
+C:\Users\zavarkoz\source\repos\Szamitogepek\obj\Debug\Szamitogepek.csproj.AssemblyReference.cache
+C:\Users\zavarkoz\source\repos\Szamitogepek\obj\Debug\MainWindow.g.cs
+C:\Users\zavarkoz\source\repos\Szamitogepek\obj\Debug\App.g.cs
+C:\Users\zavarkoz\source\repos\Szamitogepek\obj\Debug\Szamitogepek_Content.g.cs
+C:\Users\zavarkoz\source\repos\Szamitogepek\obj\Debug\Szamitogepek_MarkupCompile.cache
+C:\Users\zavarkoz\source\repos\Szamitogepek\obj\Debug\Szamitogepek_MarkupCompile.lref

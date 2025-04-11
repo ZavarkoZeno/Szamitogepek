@@ -1,0 +1,22 @@
+﻿<Window x:Class="Szamitogepek.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Szamitogepek"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <MenuItem Header="Operációs rendszerek">
+            <MenuItem Header="Listázás"/>
+            <MenuItem Header="Új hozzáadása"/>
+        </MenuItem>
+        <MenuItem Header="Számítógépek">
+            <MenuItem Header="Listázás"/>
+            <MenuItem Header="Új hozzáadása"/>
+        </MenuItem>
+        
+        <ListBox HorizontalAlignment="Stretch" Height="399" Margin="305,10,255,10" VerticalAlignment="Stretch" Width="232" SelectionChanged="ListBox_SelectionChanged_1"/>
+
+    </Grid>
+</Window>
