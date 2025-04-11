@@ -1,6 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -22,33 +23,82 @@ namespace Szamitogepek
     {
         public MainWindow()
         {
-            Adat();
             InitializeComponent();
         }
 
-        private void Adat()
+        private const string ConnectionString = "Server=localhost;Database=computer;Uid=root;Password=;SslMode=None";
+
+        
+        private void Szmito_Lekerdezes()
         {
             string connectionString = "Server=localhost;Database=computer;Uid=root;Password=;SslMode=None";
-            string query = $"SELECT 'Id','Name' FROM 'osystem';";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+
+            using (var connection = new MySqlConnection(ConnectionString))
             {
+
                 try
                 {
+                    string sql = "SELECT * FROM osystem";
+
                     connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlDataReader reader = command.ExecuteReader();
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(sql, connection))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dataGrid.ItemsSource = dt.DefaultView;
+                    }
+                    connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Hiba: {ex.Message}");
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
 
-        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void MenuComp_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Számítógépek");
+            Szmito_Lekerdezes();
+        }
 
+        private void Ops_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("OP Rendszerek");
+            OPR_Lekerdezes();
+        }
+        private void OPR_Lekerdezes()
+        {
+            string connectionString = "Server=localhost;Database=computer;Uid=root;Password=;SslMode=None";
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string sql = $"SELECT * FROM 'comp';";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        sqlListBox.Items.Add(dr["Type"].ToString());
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba történt: {ex.Message}");
+                }
+            }
+        }
+
+        private void Kilepes_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
-
